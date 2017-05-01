@@ -1,0 +1,55 @@
+<!-- page header -->
+<div class="page-header vertical-align">
+	<p id="notice"><%= notice %></p>
+	<div class="col-xs-11">
+		<h2>All Teachers<small> - manage teachers at TPTE</small></h2><!-- Dynamically fills in with school id -->
+	</div>
+	<div class="col-xs-1 center-block">
+		<div class="header-sq i-plum" title="Bianca17">
+			<span class="fa fa-apple fa-3x teacher-icon"></span>
+		</div>
+	</div>
+</div><!--End page header-->
+
+	<!--New Teacher Button-->
+<div class="row first-content-row">
+	<div class="col-xs-3">
+		<form action="">
+			<button type="submit" class="col-sm-offset-1 btn btn-lg btn-success"><i class="fa fa-plus-square-o"></i>  
+			New Teacher</button>
+			<br>WARNING! The delete button doesn't work yet! It won't be here, anyway. -Kevin M
+		</form>
+	</div><!--End col-->
+</div><!--End row -->
+
+ <!--Teacher display area -->
+<table class="table table-striped table-hover table-responsive teachers-table">
+	<thead>
+		<tr>
+			<th class="col-xs-1">Icon</th>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Admin</th>
+			<th>Last Login</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @teachers.each do |teacher| %>
+		<tr data-link="/teachers/<%= teacher.id %>"> <!-- This is pretty rough, fix it up later -->
+			<td>
+				<div class="table-sq i-plum" title="<%= teacher.user_name %>">
+					<span class="fa fa-apple fa-2x table-icon"></span>
+				</div>
+			</td>
+			<td><p class="listText"><%= teacher.user_name %></p></td>
+			<td><p class="listText"><span><%= teacher.teacher_name %></span></p></td>
+			<td><p class="listText"><span><%= teacher.admin_powers %></span></p></td>
+			<!--Don't worry, this messy line of code is placeholder.-->
+			<td><p class="listText"><span><%= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %><br><%= link_to 'Show', teacher %><br><%= link_to 'Edit', edit_teacher_path(teacher) %></span></p></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<!-- Also placeholder -->
+<%= link_to 'New Teacher', new_teacher_path %>
